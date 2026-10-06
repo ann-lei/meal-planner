@@ -11,3 +11,12 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Recipe {
+  id Int @id @default(autoincrement())
+  name String
+  link String?
+  time Int
+  servings Int
+  steps String
+}
