@@ -17,7 +17,7 @@ app.get('/api/recipes', async (req, res) => {
 
 app.post('/api/recipes', async (req, res) => {
     const recipe = await prisma.recipe.create({ data: req.body });
-    res.json(recipe)
+    res.status(201).json(recipe)
 })
 
 app.listen(PORT, () => {
