@@ -15,6 +15,18 @@ app.get('/api/recipes', async (req, res) => {
     res.json(recipes)
 })
 
+app.get('/api/recipes/:id', async (req, res) => {
+    const recipe = await prisma.recipe.findUnique({
+        where: { id: Number(req.params.id) }
+    })
+
+    if (!recipe) {
+        return res.status(404).json({ error: 'Recipe not found'});
+    }
+    
+    res.json(recipe);
+})
+
 app.post('/api/recipes', async (req, res) => {
     const recipe = await prisma.recipe.create({ data: req.body });
     res.status(201).json(recipe)
